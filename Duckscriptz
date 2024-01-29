@@ -1,10 +1,4 @@
--- made by kronw_ (gabitu likes Dick and Cristi is gay)
-
-
-
 loadstring(game:HttpGet(("https://raw.githubusercontent.com/REDzHUB/LibraryV2/main/redzLib")))()
-
-
 
 MakeWindow({
   Hub = {
@@ -29,127 +23,34 @@ MakeWindow({
 
 
 
+
 local Main = MakeTab({Name = "Main"})
 
-
-
-MakeNotifi({
-  Title = "made by kronw_",
-  Text = "join Discord fr",
-  Time = 10
-})
-
-local section = AddSection(Main, {"AimBot"})
-
-
 AddButton(Main, {
-  Name = "AimBot",
+  Name = "Inf Ammon",
   Callback = function()
     
-    
-    print("AimBot ON")
-local fov = 500
-local RunService = game:GetService("RunService")
-local UserInputService = game:GetService("UserInputService")
-local Players = game:GetService("Players")
-local Cam = game.Workspace.CurrentCamera
-
-local FOVring = Drawing.new("Circle")
-FOVring.Visible = false
-FOVring.Thickness = 2
-FOVring.Color = Color3.fromRGB(128, 0, 128) -- Purple color
-FOVring.Filled = false
-FOVring.Radius = fov
-FOVring.Position = Cam.ViewportSize / 100000
-
-local function updateDrawings()
-    local camViewportSize = Cam.ViewportSize
-    FOVring.Position = camViewportSize / 10000
+while wait() do	game:GetService("Players").LocalPlayer.PlayerGui.GUI.Client.Variables.ammocount.Value = 999	game:GetService("Players").LocalPlayer.PlayerGui.GUI.Client.Variables.ammocount2.Value = 999
 end
-
-local function onKeyDown(input)
-    if input.KeyCode == Enum.KeyCode.Delete then
-        RunService:UnbindFromRenderStep("FOVUpdate")
-        FOVring:Remove()
-    end
 end
-
-UserInputService.InputBegan:Connect(onKeyDown)
-
-local function lookAt(target)
-    local lookVector = (target - Cam.CFrame.Position).unit
-    local newCFrame = CFrame.new(Cam.CFrame.Position, Cam.CFrame.Position + lookVector)
-    Cam.CFrame = newCFrame
-end
-
-local function getClosestPlayerInFOV(trg_part)
-    local nearest = nil
-    local last = math.huge
-    local playerMousePos = Cam.ViewportSize / 2
-
-    for _, player in ipairs(Players:GetPlayers()) do
-        if player ~= Players.LocalPlayer then
-            local part = player.Character and player.Character:FindFirstChild(trg_part)
-            if part then
-                local ePos, isVisible = Cam:WorldToViewportPoint(part.Position)
-                local distance = (Vector2.new(ePos.x, ePos.y) - playerMousePos).Magnitude
-
-                if distance < last and isVisible and distance < fov then
-                    last = distance
-                    nearest = player
-                end
-            end
-        end
-    end
-
-    return nearest
-end
-
-RunService.RenderStepped:Connect(function()
-    updateDrawings()
-    local closest = getClosestPlayerInFOV("Head")
-    if closest and closest.Character:FindFirstChild("Head") then
-        lookAt(closest.Character.Head.Position)
-    end
-end)
-    
-   end
- 
 })
-
-
-
-
-
-
-
-
-local section = AddSection(Main, {"Silent Aim"})
-
-
 
 AddButton(Main, {
   Name = "Silent Aim",
   Callback = function()
     
-    
-  print("Silent Aim activate")
-  
+
 function getplrsname() for i,v in pairs(game:GetChildren()) do if v.ClassName == "Players" then return v.Name end end end local players = getplrsname() local plr = game[players].LocalPlayer coroutine.resume(coroutine.create(function() while wait(1) do coroutine.resume(coroutine.create(function() for _,v in pairs(game[players]:GetPlayers()) do if v.Name ~= plr.Name and v.Character then v.Character.RightUpperLeg.CanCollide = false v.Character.RightUpperLeg.Transparency = 75 v.Character.RightUpperLeg.Size = Vector3.new(21,21,21) v.Character.LeftUpperLeg.CanCollide = false v.Character.LeftUpperLeg.Transparency = 75 v.Character.LeftUpperLeg.Size = Vector3.new(21,21,21) v.Character.HeadHB.CanCollide = false v.Character.HeadHB.Transparency = 75 v.Character.HeadHB.Size = Vector3.new(21,21,21) v.Character.HumanoidRootPart.CanCollide = false v.Character.HumanoidRootPart.Transparency = 75 v.Character.HumanoidRootPart.Size = Vector3.new(21,21,21) end end end)) end end))
-    
-    
-  end
+end
 })
 
-local section = AddSection(Main, {"POV AimBot"})
+local section = AddSection(Main, {"player"})
 
 
 AddButton(Main, {
-  Name = "POV AimBot",
+  Name = "FOV Aimbot",
   Callback = function()
-
-
-print("POV AimBot activate")
+    
 local fov = 100
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
@@ -214,85 +115,23 @@ RunService.RenderStepped:Connect(function()
         lookAt(closest.Character.Head.Position)
     end
 end)
-    
-  end
-})
-
-
-
-
-local section = AddSection(Main, {"Infinite Ammon"})
-
-
-
-
-AddButton(Main, {
-  Name = "Infinite Ammon",
-  Callback = function()
-    
-    print("infinite ammon activate")
-    
-    while wait() do	game:GetService("Players").LocalPlayer.PlayerGui.GUI.Client.Variables.ammocount.Value = 999	game:GetService("Players").LocalPlayer.PlayerGui.GUI.Client.Variables.ammocount2.Value = 999
 end
-  end
 })
 
-    
-
-AddButton(Main, {
-  Name = "Reload Time (1,0)",
-  Callback = function()
-
-
-print("Reload Time Activate")
-for i, v in pairs(replicationstorage.Weapons:GetDescendants()) do
-if v.Name == "ReloadTime" then
-      v.Value = 0.1
-   end
-end
-  end
-})
-
-
-
-AddButton(Main, {
-  Name = "No Recoil",
-  Callback = function()
-    print("Recoil Control Activate")
-for i, v in pairs(replicationstorage.Weapons:GetDescendants()) do
- if v.Name == "RecoilControl" then
-       v.Value = 0
-   end
-end
-  end
-})
-
-
-
-AddButton(Main, {
-  Name = "Fire Rate",
-  Callback = function()
-    
-print("Fire Rate Activate")
-for i, v in pairs(replicationstorage.Weapons:GetDescendants()) do
- if v.Name == "FireRate" then
-       v.Value = 0.05
-   end
-end
-    
-  end
-})
-
-
-
-
-
+getgenv().TeamCheck = false
 local Toggle = AddToggle(Main, {
-  Name = "HitBox",
+  Name = "Team Check",
   Default = false,
-  Callback = function(V)
+  Callback = function(Value)
+getgenv().TeamCheck = value
+end
+})
 
-print(value)
+
+AddButton(Main, {
+  Name = "Hit Box",
+  Callback = function()
+   
 function getplrsname()
 for i,v in pairs(game:GetChildren()) do
 if v.ClassName == "Players" then
@@ -316,36 +155,20 @@ end
 end))
 end
 end))
-
-
-
-  end
+end
 })
 
+local Main = MakeTab({Name = "ESP"})
 
 
-
-
-
-local Toggle = AddToggle(Main, {
-  Name = "Team Check",
-  Default = false,
-  Callback = function(Value)
-    print(value)
-getgenv().TeamCheck = state
-  end
-})
-
-
-local section = AddSection(Main, {"ESP"})
+local section = AddSection(Main, {"ESPS"})
 
 
 
 AddButton(Main, {
-  Name = "ESP Players",
+  Name = "ESP name",
   Callback = function()
-
-print("ESP activate")
+    
 local c = workspace.CurrentCamera
 local ps = game:GetService("Players")
 local lp = ps.LocalPlayer
@@ -424,105 +247,13 @@ for i,p in next, ps:GetPlayers() do
 end
 
 ps.PlayerAdded:Connect(p_added)
-
-
-  end
-})
-
-
-
-AddButton(Main, {
-  Name = "Tracker",
-  Callback = function()
-    
-    
- print("Trackers ON")
-local lplr = game.Players.LocalPlayer
-local camera = game:GetService("Workspace").CurrentCamera
-local CurrentCamera = workspace.CurrentCamera
-local worldToViewportPoint = CurrentCamera.worldToViewportPoint
-
-_G.TeamCheck = false -- Use True or False to toggle TeamCheck
-
-for i,v in pairs(game.Players:GetChildren()) do
-    local Tracer = Drawing.new("Line")
-    Tracer.Visible = false
-    Tracer.Color = Color3.new(0,255,50)
-    Tracer.Thickness = 1
-    Tracer.Transparency = 1
-
-    function lineesp()
-        game:GetService("RunService").RenderStepped:Connect(function()
-            if v.Character ~= nil and v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v ~= lplr and v.Character.Humanoid.Health > 0 then
-                local Vector, OnScreen = camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position)
-
-                if OnScreen then
-                    Tracer.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y / 1)
-                    Tracer.To = Vector2.new(Vector.X, Vector.Y)
-
-                    if _G.TeamCheck and v.TeamColor == lplr.TeamColor then
-                        --//Teammates
-                        Tracer.Visible = false
-                    else
-                        --//Enemies
-                        Tracer.Visible = true
-                    end
-                else
-                    Tracer.Visible = false
-                end
-            else
-                Tracer.Visible = false
-            end
-        end)
-    end
-    coroutine.wrap(lineesp)()
 end
-
-game.Players.PlayerAdded:Connect(function(v)
-    local Tracer = Drawing.new("Line")
-    Tracer.Visible = false
-    Tracer.Color = Color3.new(0,255,50)
-    Tracer.Thickness = 1
-    Tracer.Transparency = 1
-
-    function lineesp()
-        game:GetService("RunService").RenderStepped:Connect(function()
-            if v.Character ~= nil and v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v ~= lplr and v.Character.Humanoid.Health > 0 then
-                local Vector, OnScreen = camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position)
-
-                if OnScreen then
-                    Tracer.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y / 1)
-                    Tracer.To = Vector2.new(Vector.X, Vector.Y)
-
-                    if _G.TeamCheck and v.TeamColor == lplr.TeamColor then
-                        --//Teammates
-                        Tracer.Visible = false
-                    else
-                        --//Enemies
-                        Tracer.Visible = true
-                    end
-                else
-                    Tracer.Visible = false
-                end
-            else
-                Tracer.Visible = false
-            end
-        end)
-    end
-    coroutine.wrap(lineesp)()
-end)
-    
-  end
 })
 
 
-  
-  AddButton(Main, {
-  Name = "ESP Box",
-  Callback = function()
-    
-    
-    print("ESP Box Activate")
+Tab: AddButton({
+	Name = "Esp box",
+	Callback = function(value)
 local plr = game.Players.LocalPlayer
 local camera = game.Workspace.CurrentCamera
 for i, v in pairs(game.Players:GetChildren()) do
@@ -714,152 +445,128 @@ game.Players.PlayerAdded:Connect(function(newplr) --Parameter gets the new playe
     end
     coroutine.wrap(ESP)()
 end)
-    
-  end
-})
-
-  
-  
-  local Main = MakeTab({Name = "Misc"})
-
-
-
-AddButton(Main, {
-  Name = "Rejoin",
-  Callback = function()
-    
-print("Rejoining...")
-local ts = game:GetService("TeleportService")
-local p = game:GetService("Players").LocalPlayer
-ts:Teleport(game.PlaceId, p)
-    
-  end
-})
-
-
-
-AddButton(Main, {
-  Name = "Server Hop",
-  Callback = function()
-print("Server Hopinng...")
-local Http = game:GetService("HttpService")
-local TPS = game:GetService("TeleportService")
-local Api = "https://games.roblox.com/v1/games/"
-local _place = game.PlaceId
-local _servers = Api.._place.."/servers/Public?sortOrder=Asc&limit=100"
-function ListServers(cursor)
-   local Raw = game:HttpGet(_servers .. ((cursor and "&cursor="..cursor) or ""))
-   return Http:JSONDecode(Raw)
 end
-local Server, Next; repeat
-   local Servers = ListServers(Next)
-   Server = Servers.data[1]
-   Next = Servers.nextPageCursor
-until Server
-TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)
-
-  end
 })
 
 
 
 AddButton(Main, {
-  Name = "NoClip",
+  Name = "ESP team",
   Callback = function()
-    
-    print("NoClip Activate")
-local Noclip = nil
-local Clip = nil
-function noclip()
- Clip = false
- local function Nocl()
-  if Clip == false and game.Players.LocalPlayer.Character ~= nil then
-   for _,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-    if v:IsA('BasePart') and v.CanCollide and v.Name ~= floatName then
-     v.CanCollide = false
+   
+local gui = Instance.new("BillboardGui");
+gui.Name = "";
+gui.AlwaysOnTop = true;
+gui.LightInfluence = 0;
+gui.Size = UDim2.new(1.75, 0, 1.75, 0);
+local frame = Instance.new("Frame", gui);
+frame.BackgroundColor3 = Color3.fromRGB(170, 0, 0);
+frame.Size = UDim2.new(1, 0, 1, 0);
+frame.BorderSizePixel = 4;
+frame.BorderColor3 = Color3.fromRGB(0, 0, 0);
+local gi = gui:Clone();
+local body = frame:Clone();
+body.Parent = gi;
+body.BackgroundColor3 = Color3.fromRGB(0, 170, 170);
+
+for _, v in pairs(game:GetService("Players"):GetPlayers()) do
+    if v.Name ~= game:GetService("Players").LocalPlayer.Name and v.Character and v.Character:FindFirstChild("Head") then
+        gui:Clone().Parent = v.Character.Head;
     end
+end
+
+local c = 1 function zigzag(X)  return math.acos(math.cos(X * math.pi)) / math.pi end game:GetService("RunService").RenderStepped:Connect(function()  if game.Workspace.Camera:FindFirstChild('Arms') then   for i,v in pairs(game.Workspace.Camera.Arms:GetDescendants()) do    if v.ClassName == 'MeshPart' then      v.Color = Color3.fromHSV(zigzag(c),1,1)     c = c + .0001    end   end  end end)
+net = true -- if false = do nothing
+notify = true -- set this to false if u don't want to see notiflication
+end
+})
+
+
+local Main = MakeTab({Name = "Gun Mod"})
+
+local section = AddSection(Main, {"Gun Mod"})
+
+
+local replicationstorage = 
+game.ReplicatedStorage
+
+AddButton(Main, {
+  Name = "Gun Mod",
+  Callback = function()
+    
+
+local c = 1 function zigzag(X)  return math.acos(math.cos(X * math.pi)) / math.pi end game:GetService("RunService").RenderStepped:Connect(function()  if game.Workspace.Camera:FindFirstChild('Arms') then   for i,v in pairs(game.Workspace.Camera.Arms:GetDescendants()) do    if v.ClassName == 'MeshPart' then      v.Color = Color3.fromHSV(zigzag(c),1,1)     c = c + .0001    end   end  end end)
+net = true 
+notify = true
+end
+})
+
+AddButton(Main, {
+  Name = "Fire Rate",
+  Callback = function()
+   
+for i, v in 
+pairs(replicationstorage.Weapons:GetDescendants()) do
+ if v.Name == "FireRate" then
+       v.Value = 0.05
    end
-  end
-  wait(0.21) -- basic optimization
- end
- Noclip = game:GetService('RunService').Stepped:Connect(Nocl)
 end
-function clip()
- if Noclip then Noclip:Disconnect() end
- Clip = true
 end
-noclip() -- to toggle noclip() and clip()
-    
-  end
 })
+
+local Main = MakeTab({Name = "Gun Inf"})
+
+
+local section = AddSection(Main, {"Gun"})
 
 
 
 AddButton(Main, {
-  Name = "Inf Jumps",
+  Name = "No Recoil",
   Callback = function()
-    
-    print("Inf Jumps Activate")
-loadstring(game:HttpGet("https://raw.githubusercontent.com/BsGlitch/-nfJumps/main/BsGlitch"))()
+   
+for i, v in 
+pairs(replicationstorage.Weapons:GetDescendants()) do
+ if v.Name == "RecoilControl" then
+       v.Value = 0
+   end
+end
+end
+})
+
+
+AddButton(Main, {
+  Name = "Max Spread",
+  Callback = function()
+   
+for i, v in 
+pairs(replicationstorage.Weapons:GetDescendants()) do
+if v.Name == "MaxSpread" then
+       v.Value = 0
+   end
+end
 end
 })
 
 AddButton(Main, {
-  Name = "Remove Textures",
+  Name = "Reload Time (0.1)",
   Callback = function()
     
-print("ON")
-local ToDisable = {
-	Textures = false,
-	VisualEffects = true,
-	Parts = true,
-	Particles = true,
-	Sky = true
-}
-
-local ToEnable = {
-	FullBright = false
-}
-
-local Stuff = {}
-
-for _, v in next, game:GetDescendants() do
-	if ToDisable.Parts then
-		if v:IsA("Part") or v:IsA("Union") or v:IsA("BasePart") then
-			v.Material = Enum.Material.SmoothPlastic
-			table.insert(Stuff, 1, v)
-		end
-	end
-	
-	if ToDisable.Particles then
-		if v:IsA("ParticleEmitter") or v:IsA("Smoke") or v:IsA("Explosion") or v:IsA("Sparkles") or v:IsA("Fire") then
-			v.Enabled = false
-			table.insert(Stuff, 1, v)
-		end
-	end
-	
-	if ToDisable.VisualEffects then
-		if v:IsA("BloomEffect") or v:IsA("BlurEffect") or v:IsA("DepthOfFieldEffect") or v:IsA("SunRaysEffect") then
-			v.Enabled = false
-			table.insert(Stuff, 1, v)
-		end
-	end
-	
-	if ToDisable.Textures then
-		if v:IsA("Decal") or v:IsA("Texture") then
-			v.Texture = ""
-			table.insert(Stuff, 1, v)
-		end
-	end
-	
-	if ToDisable.Sky then
-		if v:IsA("Sky") then
-			v.Parent = nil
-			table.insert(Stuff, 1, v)
-		end
-	end
+for i, v in 
+pairs(replicationstorage.Weapons:GetDescendants()) do
+if v.Name == "ReloadTime" then
+      v.Value = 0.1
+   end
 end
-    
+end
+})
+
+local Main = MakeTab({Name = "credits"})
+
+AddButton(Main, {
+  Name = "kronw_. On Discord",
+  Callback = function()
     
   end
 })
+
