@@ -251,9 +251,10 @@ end
 })
 
 
-Tab: AddButton({
-	Name = "Esp box",
-	Callback = function(value)
+AddButton(Main, {
+  Name = "ESP Box",
+  Callback = function()
+    
 local plr = game.Players.LocalPlayer
 local camera = game.Workspace.CurrentCamera
 for i, v in pairs(game.Players:GetChildren()) do
