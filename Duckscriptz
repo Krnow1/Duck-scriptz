@@ -801,10 +801,14 @@ AddButton(Main, {
     
     print("Inf Jumps Activate")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/BsGlitch/-nfJumps/main/BsGlitch"))()
-end)
+end
+})
 
-KillingCheats:CreateButton("Remove textures", function()
-print("")
+AddButton(Main, {
+  Name = "Remove Textures",
+  Callback = function()
+    
+print("ON")
 local ToDisable = {
 	Textures = false,
 	VisualEffects = true,
